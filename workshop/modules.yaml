@@ -25,32 +25,32 @@ modules:
     name: Configure Log Forwarding to Cloudwatch
     exit_sign: Continue
   ostoy/0_lab_intro:
-    name: Deploy the Application, Introduction
+    name: Deploy the Application - Introduction
     exit_sign: Continue
   ostoy/1_lab_overview.adoc:
-    name: Deploy the Application, Overview
+    name: Deploy the Application - Overview
     exit_sign: Continue
   ostoy/2_deployment.adoc:
-    name: Deploy the Application, Deployment
+    name: Deploy the Application - Deployment
     exit_sign: Continue
   ostoy/3_healthcheck.adoc:
-    name: Deploy the Application, Health Checks
+    name: Deploy the Application - Health Checks
     exit_sign: Continue
   ostoy/4_storage.adoc:
-    name: Deploy the Application, Storage
+    name: Deploy the Application - Storage
     exit_sign: Continue
   ostoy/5_confsecenv.adoc:
-    name: Deploy the Application, Configuration
+    name: Deploy the Application - Configuration
     exit_sign: Continue
   ostoy/6_networking.adoc:
-    name: Deploy the Application, Networking
+    name: Deploy the Application - Networking
     exit_sign: Continue
   ostoy/7_scaling.adoc:
-    name: Deploy the Application, Scaling
+    name: Deploy the Application - Scaling
     exit_sign: Continue
   ostoy/8_logging.adoc:
-    name: Deploy the Application, Logging
+    name: Deploy the Application - Logging
     exit_sign: Continue
   ostoy/9_ack.adoc:
-    name: Deploy the Application, ACK
+    name: Deploy the Application - ACK
     exit_sign: Exit
