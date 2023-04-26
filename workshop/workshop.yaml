@@ -10,8 +10,8 @@ modules:
   - ops/lab_5_labeling_nodes
   - ops/lab_6_autoscaling
   - ops/lab_7_cloudwatch
-  - ostoy/0_lab_intro
-  - ostoy/1_lab_overview
+  - ostoy/0_introduction
+  - ostoy/1_overview
   - ostoy/2_deployment
   - ostoy/3_healthcheck
   - ostoy/4_storage

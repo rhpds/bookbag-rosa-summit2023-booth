@@ -10,7 +10,7 @@ modules:
     name: Deploy ROSA cluster
     exit_sign: Continue
   ops/lab_3_create_admin_user:
-    name: Create an admin user
+    name: Create admin user
     exit_sign: Continue
   ops/lab_4_managing_worker_nodes:
     name: Managing Worker Nodes
@@ -24,10 +24,10 @@ modules:
   ops/lab_7_cloudwatch:
     name: Configure Log Forwarding to Cloudwatch
     exit_sign: Continue
-  ostoy/0_lab_intro:
+  ostoy/0_introduction:
     name: Deploy the Application Introduction
     exit_sign: Continue
-  ostoy/1_lab_overview.adoc:
+  ostoy/1_overview.adoc:
     name: Deploy the Application Overview
     exit_sign: Continue
   ostoy/2_deployment.adoc:
