@@ -1,24 +1,13 @@
 ---
-name: ROSA Workshop
+name: Summit 2023 ROSA Workshop
 modules:
   activate:
   - home
   - lab_1_setup
   - lab_2_deploy_cluster
   - lab_3_create_admin_user
-  - lab_4_configure_idp
-  - lab_5_cluster_upgrades
-  - lab_6_managing_worker_nodes
-  - lab_7_autoscaling
-  - lab_8_labeling_nodes
-  - lab_9_cloudwatch
-  - lab_10_deploy_app
-  - lab_11_openshift_gitops
-  - lab_12_network_policy
-  # - lab_13_cicd
-  - lab_14_resilient_app
-  - lab_15_service_mesh_introduction
-  - lab_16_service_mesh_deploy_operator
-  - lab_17_service_mesh_deploy_control_plane
-  - lab_18_service_mesh_deploy_app
-  - lab_19_service_mesh_observe
+  - lab_4_managing_worker_nodes
+  - lab_5_labeling_nodes
+  - lab_6_autoscaling
+  - lab_7_cloudwatch
+
