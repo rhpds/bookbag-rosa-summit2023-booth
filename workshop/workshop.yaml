@@ -3,13 +3,13 @@ name: Summit 2023 ROSA Workshop
 modules:
   activate:
   - home
-  - lab_1_setup
-  - lab_2_deploy_cluster
-  - lab_3_create_admin_user
-  - lab_4_managing_worker_nodes
-  - lab_5_labeling_nodes
-  - lab_6_autoscaling
-  - lab_7_cloudwatch
+  - ops/lab_1_setup
+  - ops/lab_2_deploy_cluster
+  - ops/lab_3_create_admin_user
+  - ops/lab_4_managing_worker_nodes
+  - ops/lab_5_labeling_nodes
+  - ops/lab_6_autoscaling
+  - ops/lab_7_cloudwatch
   - ostoy/0_lab_intro
   - ostoy/1_lab_overview
   - ostoy/2_deployment
