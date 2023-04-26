@@ -1,12 +1,6 @@
 == Resources
 
 * The source code for this app is available here: https://github.com/openshift-cs/ostoy
-* OSToy front-end container image: https://quay.io/ostoylab/ostoy-frontend
-* OSToy microservice container image: https://quay.io/ostoylab/ostoy-microservice
-* Deployment Definition YAMLs:
- ** link:yaml/ostoy-frontend-deployment.yaml[ostoy-fronend-deployment.yaml]
- ** link:yaml/ostoy-microservice-deployment.yaml[ostoy-microservice-deployment.yaml]
-* S3 bucket manifest for ACK S3: link:yaml/s3-bucket.yaml[s3-bucket.yaml]
 
 [NOTE]
 ====
