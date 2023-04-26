@@ -39,15 +39,21 @@ stderr: Oh no! Error!
 
 === View logs with CloudWatch
 
-. Access the web console for your AWS account and go to CloudWatch.
+. Access the web console for your AWS account and go to CloudWatch. Open the URL %aws_web_console_url% in a new tab in your web browser. Login using the following credentials:
+
+* Username: `%aws_web_console_user_name%`
+* Password: `%tr0Ka51AyWE9%`
+
+. In the *Search* bar at the top type `CloudWatch` and click on *CloudWatch* in the search results.
+
 . Click on _Logs_ > _Log groups_ in the left menu to see the different groups of logs depending on what you selected during installation.
-If you followed the previous steps you should see 2 groups.
-One for `<cluster-name>-XXXXX-application` and one for `<cluster-name>-XXXXX-infrastructure`.
+If you followed the previous steps you should see 4 groups.
+One for `rosa-XXXXX.audit`, one for `rosa-XXXXX.infrastructure`, one for `rosa-XXXXX.ack-system` and finally your ostoy project `rosa-XXXX.ostoy-XXXX`.
 +
 image::images/9-cw.png[cloudwatch]
 
-. Click on `<cluster-name>-XXXXX.application`
-. Click on the log stream for the "frontend" pod.
+. Click on `rosa-XXXX.ostoy-XXXX`.
+. Click on the log stream for the newest "frontend" pod.
 It will be titled something like `+kubernetes.var[...]ostoy-frontend-[...]+`
 +
 image::images/9-logstream.png[cloudwatch2]
