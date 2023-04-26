@@ -1,4 +1,4 @@
-=== Resources
+== Resources
 
 * The source code for this app is available here: https://github.com/openshift-cs/ostoy
 * OSToy front-end container image: https://quay.io/ostoylab/ostoy-frontend
@@ -8,11 +8,13 @@
  ** link:yaml/ostoy-microservice-deployment.yaml[ostoy-microservice-deployment.yaml]
 * S3 bucket manifest for ACK S3: link:yaml/s3-bucket.yaml[s3-bucket.yaml]
 
-!!!
-note 		In order to simplify the deployment of the app we have included all the objects needed in the above deployment manifests as an "all-in-one" manifest.
+[NOTE]
+====
+In order to simplify the deployment of the app we have included all the objects needed in the above deployment manifests as an "all-in-one" manifest.
 Though in reality, an enterprise would most likely want to have a different manifest file for each Kubernetes object.
+====
 
-=== About OSToy
+== About OSToy
 
 OSToy is a simple Node.js application that we will deploy to ROSA.
 It is used to help us explore the functionality of Kubernetes.
@@ -43,11 +45,6 @@ image::images/3-ostoy-arch.png[OSTOY Architecture]
 . *Pod Auto Scaling:* Tool to increase the load of the pods and test the HPA.
 . *ACK S3:* Integrate with AWS S3 to read and write objects to a bucket.
 (Optional)
-+
-!!!
-important      In order see the "ACK S3" section of OSToy, you must complete the xref:13-ack.adoc[ACK section] of this workshop.
-If you decide not to complete that section, the OSToy application will work regardless.
-
 . *About:* Shows some more information about the application.
 +
 image::images/3-ostoy-homepage.png[Home Page]

@@ -11,6 +11,13 @@ modules:
   - lab_6_autoscaling
   - lab_7_cloudwatch
   - ostoy/0_lab_intro
-  - ostoy/1_prereqs
-  - ostoy/2_concepts
-
+  - ostoy/1_lab_overview
+  - ostoy/2_deployment
+  - ostoy/3_healthcheck
+  - ostoy/4_storage
+  - ostoy/5_confsecenv
+  - ostoy/6_networking
+  - ostoy/7_scaling
+  - ostoy/8_logging
+  - ostoy/9_ack
+      

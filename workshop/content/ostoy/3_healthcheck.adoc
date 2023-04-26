@@ -5,22 +5,21 @@ We will first intentionally crash our pod and see that Kubernetes will self-heal
 Then we will trigger the health check by stopping the response on the `/health` endpoint in our app.
 After three consecutive failures Kubernetes should kill the pod and then recreate it.
 
-[discrete]
-==== 1. Prepare the desktop
+=== Prepare the desktop
 
 It would be best to prepare by splitting your screen between the OpenShift Web UI and the OSToy application so that you can see the results of our actions immediately.
 
 image::images/5-ostoy-splitscreen.png[Splitscreen]
 
 But if the screen is too small or that just won't work, then open the OSToy application in another tab so you can quickly switch to the OpenShift Web Console once you click the buttons in our app.
-To get to this deployment in the OpenShift Web Console go to make sure you've selected "ostoy" for the project and in the left menu go to:
+
+To get to this deployment in the OpenShift Web Console go to make sure you've selected "ostoy-%guid%" for the project and in the left menu go to:
 
 _Workloads > Deployments > "ostoy-frontend"_
 
 image::images/5-ostoy-deployview.png[Deploy Num]
 
-[discrete]
-==== 2. Intentionally crash the pod
+=== Intentionally crash the pod
 
 Go to the OSToy app, click on _Home_ in the left menu, and enter a message in the "Crash Pod" tile (ex: "This is goodbye!") and press the "Crash Pod" button.
 
@@ -31,8 +30,7 @@ After you press the button you will see:
 
 image::images/5-ostoy-crashmsg.png[Crash Message]
 
-[discrete]
-==== 3. View the revival
+=== View the revival
 
 Quickly switch to the Deployments screen (from step 1).
 You will see that the pod turns yellowish, meaning it is down but should quickly come back up and show blue.
@@ -40,8 +38,7 @@ It does happen quickly so you might miss it.
 
 image::images/5-ostoy-podcrash.gif[Pod Crash]
 
-[discrete]
-==== 4. Confirm
+=== Confirm
 
 You can also check in the pod events.
 Click on _"Pods" sub tab > ostoy-frontend-xxxxxxx-xxxx_.
@@ -53,17 +50,15 @@ Then click the _Events_ sub tab and further verify that the container has crashe
 
 image::images/5-ostoy-podevents.png[Pod Events]
 
-[discrete]
-==== 5. Make the app malfunction
+=== Make the app malfunction
 
-Keep the page from the pod events still open from step 4.
+Keep the page from the pod events still open from the previous step.
 Then in the OSToy app click on the "Toggle Health" button, in the "Toggle Health Status" tile.
 You will see the "Current Health" switch to "I'm not feeling all that well".
 
 image::images/5-ostoy-togglehealth.png[Pod Events]
 
-[discrete]
-==== 6. Confirm
+=== Confirm
 
 This will cause the app to stop responding with a "200 HTTP code".
 After 3 such consecutive failures ("A"), Kubernetes will kill the pod ("B") and restart it ("C").
