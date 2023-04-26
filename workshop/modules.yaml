@@ -24,7 +24,15 @@ modules:
   lab_7_cloudwatch:
     name: Configure Log Forwarding to Cloudwatch
     exit_sign: Continue
-
+  ostoy/0_lab_intro:
+    name: Deploying Application - Introduction
+    exit_sign: Continue
+  ostoy/1_prereqs.adoc:
+    name: Deploying Application - Prerequisites
+    exit_sign: Continue
+  ostoy/2_concepts.adoc:
+    name: Deploying Application - Concepts
+    exit_sign: Continue
 
   lab_19_service_mesh_observe:
     name: Configure and Observe Traffic

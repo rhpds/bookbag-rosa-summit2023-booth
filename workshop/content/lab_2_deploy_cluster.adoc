@@ -120,7 +120,6 @@ Note that for the cluster name you are using `rosa-${GUID}` - the environment va
 rosa create cluster \
   --cluster-name rosa-${GUID} \
   --region us-east-2 \
-  --version 4.12.12 \
   --sts \
   --mode auto \
   --yes
@@ -229,7 +228,7 @@ rosa logs install -c rosa-${GUID} --watch
 +
 [TIP]
 ====
-Sometimes it can happen that the connection to your bastion VM drops. In that case simply follow the instructions in the Setup section to ssh back into your bastion VM.
+Sometimes it can happen that the connection to your bastion VM drops. In that case simply follow the instructions in the *Setup* section to ssh back into your bastion VM.
 ====
 
 . Verify that the cluster is now ready:

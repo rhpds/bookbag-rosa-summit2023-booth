@@ -10,4 +10,7 @@ modules:
   - lab_5_labeling_nodes
   - lab_6_autoscaling
   - lab_7_cloudwatch
+  - ostoy/0_lab_intro
+  - ostoy/1_rereqs
+  - ostoy/2_concepts
 
