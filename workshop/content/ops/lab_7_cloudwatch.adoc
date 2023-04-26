@@ -258,7 +258,7 @@ EOF
 clusterlogging.logging.openshift.io/instance created
 ----
 
-. After a few minutes, you should begin to see log groups inside of AWS CloudWatch.
+. After a few minutes, you should begin to see log groups inside of AWS CloudWatch. Repeat this command until you do or continue the lab if you don't want to wait.
 +
 [source,sh,role=execute]
 ----
