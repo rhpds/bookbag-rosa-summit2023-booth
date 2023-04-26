@@ -20,4 +20,3 @@ modules:
   - ostoy/7_scaling
   - ostoy/8_logging
   - ostoy/9_ack
-      
