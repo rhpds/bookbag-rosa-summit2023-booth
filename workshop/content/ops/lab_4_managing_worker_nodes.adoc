@@ -147,6 +147,7 @@ rosa-6n4s8-7hbhw-workshop-us-east-2a-pxnvd   Provisioned   m5.xlarge    us-east-
 . We don't actually need these extra worker nodes so let's scale the cluster back down to a total of 3 worker nodes by scaling down the "Workshop" Machine Pool.
 To do so, run the following command:
 +
+[source,sh,role=execute]
 ----
 rosa update machinepool -c rosa-${GUID} --replicas 1 workshop
 ----
