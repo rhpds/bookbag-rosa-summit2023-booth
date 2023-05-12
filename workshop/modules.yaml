@@ -22,35 +22,35 @@ modules:
     name: Cluster Autoscaling
     exit_sign: Continue
   ops/lab_7_cloudwatch:
-    name: Configure Log Forwarding to Cloudwatch
+    name: Log Forwarding to Cloudwatch
     exit_sign: Continue
   ostoy/0_introduction:
-    name: Deploy the Application - Introduction
+    name: Introduction
     exit_sign: Continue
   ostoy/1_overview:
-    name: Deploy the Application - Overview
+    name: Overview
     exit_sign: Continue
   ostoy/2_deployment:
-    name: Deploy the Application - Deployment
+    name: Deployment
     exit_sign: Continue
   ostoy/3_healthcheck:
-    name: Deploy the Application - Health Checks
+    name: Health Checks
     exit_sign: Continue
   ostoy/4_storage:
-    name: Deploy the Application - Storage
+    name: Storage
     exit_sign: Continue
   ostoy/5_confsecenv:
-    name: Deploy the Application - Configuration
+    name: Configuration
     exit_sign: Continue
   ostoy/6_networking:
-    name: Deploy the Application - Networking
+    name: Networking
     exit_sign: Continue
   ostoy/7_scaling:
-    name: Deploy the Application - Scaling
+    name: Scaling
     exit_sign: Continue
   ostoy/8_logging:
-    name: Deploy the Application - Logging
+    name: Logging
     exit_sign: Continue
   ostoy/9_ack:
-    name: Deploy the Application - ACK
+    name: ACK
     exit_sign: Exit
