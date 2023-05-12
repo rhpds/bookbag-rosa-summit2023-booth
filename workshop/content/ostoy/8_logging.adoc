@@ -42,7 +42,7 @@ stderr: Oh no! Error!
 . Access the web console for your AWS account and go to CloudWatch. Open the URL %aws_web_console_url% in a new tab in your web browser. Login using the following credentials:
 
 * Username: `%aws_web_console_user_name%`
-* Password: `%tr0Ka51AyWE9%`
+* Password: `%aws_web_console_password%`
 
 . In the *Search* bar at the top type `CloudWatch` and click on *CloudWatch* in the search results.
 
