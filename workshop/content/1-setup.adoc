@@ -1,0 +1,156 @@
+= Summit 2023: ROSA Booth Demo
+
+[WARNING]
+====
+The steps on this page should only be run ONCE at the very beginning.  Do not run these again.  This is only for a fresh environment.
+====
+
+== Connect to your bastion VM
+
+In the terminal window to the right, connect to the bastion VM (you can click the command below to have it copied and executed automatically):
+
+[source,sh,role=execute]
+----
+ssh %rosa_bastion_user_name%@bastion.%rosa_subdomain_base%
+----
+
+The password for the user %rosa_bastion_user_name% is `%rosa_user_password%`
+
+== Create the admin user in the ROSA Cluster
+
+. Run this command to create the admin user. The output is saved locally in case you get logged out.
++
+[source,sh,role=execute]
+----
+rosa create admin --cluster rosa-${GUID} > ${HOME}/login-command.txt
+cat ${HOME}/login-command.txt | sed -n '5p' | sed -e 's/^[[:space:]]*//'
+----
+
+. Wait about 2 minutes for it to set up. Copy the command and paste it in and run it to log in.
+
+== Ensure ELB service role exists
+
+Run the following to check for the role and create it if it is missing.
+
+[source,sh,role=execute]
+----
+aws iam get-role --role-name "AWSServiceRoleForElasticLoadBalancing" || aws iam create-service-linked-role --aws-service-name "elasticloadbalancing.amazonaws.com"
+----
+
+== Configure Cloudwatch
+
+. Run the following to configure the cluster to forward logs to cloudwatch.
++
+[source,sh,role=execute]
+----
+curl -s https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/resources/configure-cloudwatch.sh | bash
+----
+
+. After a few minutes, you should begin to see log groups inside of AWS CloudWatch. Repeat this command until you do or continue the lab if you don't want to wait.
++
+[source,sh,role=execute]
+----
+aws logs describe-log-groups --log-group-name-prefix rosa-${GUID}
+----
++
+.Sample Output
+[source,json,options=nowrap]
+----
+{
+    "logGroups": [
+        {
+            "logGroupName": "rosa-fxxj9.audit",
+            "creationTime": 1682098364311,
+            "metricFilterCount": 0,
+            "arn": "arn:aws:logs:us-east-2:511846242393:log-group:rosa-fxxj9.audit:*",
+            "storedBytes": 0
+        },
+        {
+            "logGroupName": "rosa-fxxj9.infrastructure",
+            "creationTime": 1682098364399,
+            "metricFilterCount": 0,
+            "arn": "arn:aws:logs:us-east-2:511846242393:log-group:rosa-fxxj9.infrastructure:*",
+            "storedBytes": 0
+        }
+    ]
+}
+----
+
+
+== Log into OpenShift Web Console
+
+. Get the OpenShift Web console url
++
+[source,sh,role=execute]
+----
+oc whoami --show-console
+----
+
+. Click on `htpasswd`
+. User: `cluster-admin`
+. PW: from admin user command above
+
+== Install the ACK Operator
+
+. Login to your OpenShift cluster's web console (if you aren't already).
+. On the left menu, click on "Operators > OperatorHub".
+. In the filter box enter "S3" and select the "AWS Controller for Kubernetes - Amazon S3"
+. If you get a pop-up saying that it is a community operator, just click "Continue".
+. Click "Install" in the top left.
+. Ensure that "All namespaces on the cluster" is selected for "Installation mode".
+. Ensure that "ack-system" is selected for "Installed Namespace".
+. Under "Update approval" ensure that "Manual" is selected.
++
+[WARNING]
+====
+Make sure to select "Manual Mode" so that changes to the Service Account do not get overwritten by an automatic operator update.
+====
+
+. Click "Install" on the bottom.
+
+. Approve the operator installation. Click the *Approve* button.
+
+. You will see that installation is taking place. The installation won't complete until the next step is finished.
+So please proceed.
+
+. Run this script to finish setup.
++
+[source,sh,role=execute]
+----
+curl -s https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/resources/setup-s3-ack-controller.sh | bash
+----
+
+. Confirm that the environment variables are set. Run:
++
+[source,sh,role=execute]
+----
+oc describe pod ack-s3-controller -n ack-system | grep "^\s*AWS_"
+----
++
+.Sample Output
+[source,text,options=nowrap]
+----
+AWS_ROLE_ARN:                 arn:aws:iam::948540395585:role/ack-s3-controller
+AWS_WEB_IDENTITY_TOKEN_FILE:  /var/run/secrets/eks.amazonaws.com/serviceaccount/token
+----
+
+== Run these to setup the demo.  
+
+. Create the OSToy project.
++
+[source,sh,role=execute]
+----
+oc new-project ostoy-${GUID}
+----
+
+. Run the following to set up this demo.
++
+[source,sh,role=execute]
+----
+cd $HOME
+wget -q https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-microservice-deployment.yaml
+curl -s https://raw.githubusercontent.com/0kashi/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-frontend-deployment.yaml | sed 's/\# serviceAccount/serviceAccount/' > ${HOME}/ostoy-frontend.deployment.yaml
+wget -q https://raw.githubusercontent.com/0kashi/bookbag-rosa-summit2023-booth/main/workshop/content/setup-rosa-demo.sh
+chmod +x setup-rosa-demo.sh
+./setup-rosa-demo.sh
+----

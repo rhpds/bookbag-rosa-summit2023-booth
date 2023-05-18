@@ -1,0 +1,30 @@
+= Information
+
+Information about this environment is listed on this page.
+
+
+== AWS Console info
+
+. URL: %aws_web_console_url% 
+* Username: `%aws_web_console_user_name%`
+* Password: `%aws_web_console_password%`
+
+== Cluster information
+
+. Login command:
++
+[source,sh,role=execute]
+----
+cat ${HOME}/login-command.txt | sed -n '5p' | sed -e 's/^[[:space:]]*//'
+----
+
+. OpenShift Web console URL
++
+[source,sh,role=execute]
+----
+oc whoami --show-console
+----
+
+. Select `htpasswd`
+. User: `cluster-admin`
+. PW: from login command
