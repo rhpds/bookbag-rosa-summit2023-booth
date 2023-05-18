@@ -22,8 +22,7 @@ The password for the user %rosa_bastion_user_name% is `%rosa_user_password%`
 +
 [source,sh,role=execute]
 ----
-rosa create admin --cluster rosa-${GUID} > ${HOME}/login-command.txt
-cat ${HOME}/login-command.txt | sed -n '5p' | sed -e 's/^[[:space:]]*//'
+rosa create admin --cluster rosa-${GUID} | tee ${HOME}/login-command.cmd
 ----
 
 . Wait about 2 minutes for it to set up. Copy the command and paste it in and run it to log in.
@@ -46,7 +45,7 @@ aws iam get-role --role-name "AWSServiceRoleForElasticLoadBalancing" || aws iam 
 curl -s https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/resources/configure-cloudwatch.sh | bash
 ----
 
-. After a few minutes, you should begin to see log groups inside of AWS CloudWatch. Repeat this command until you do or continue the lab if you don't want to wait.
+. After a few minutes, you should begin to see log groups inside of AWS CloudWatch. Repeat this command until you do or continue if you don't want to wait.
 +
 [source,sh,role=execute]
 ----
@@ -147,9 +146,6 @@ oc new-project ostoy-${GUID}
 +
 [source,sh,role=execute]
 ----
-cd $HOME
-wget -q https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-microservice-deployment.yaml
-curl -s https://raw.githubusercontent.com/0kashi/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-frontend-deployment.yaml | sed 's/\# serviceAccount/serviceAccount/' > ${HOME}/ostoy-frontend.deployment.yaml
 wget -q https://raw.githubusercontent.com/0kashi/bookbag-rosa-summit2023-booth/main/workshop/content/setup-rosa-demo.sh
 chmod +x setup-rosa-demo.sh
 ./setup-rosa-demo.sh

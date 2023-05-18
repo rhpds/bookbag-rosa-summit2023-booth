@@ -6,17 +6,7 @@ Run these steps after showing this demo. So that it is ready for the next visito
 
 [source,sh,role=execute]
 ----
-oc delete -n $PROJECT_NAME -f ${HOME}/ostoy-microservice-deployment.yaml
-oc delete -n $PROJECT_NAME -f ${HOME}/ostoy-frontend-deployment.yaml
-oc delete -n $PROJECT_NAME secret secrets-store-creds
-oc delete -n $PROJECT_NAME SecretProviderClass azure-kvname
+oc delete -n ostoy-$GUID -f ${HOME}/ostoy-microservice-deployment.yaml
+oc delete -n ostoy-$GUID -f ${HOME}/ostoy-frontend-deployment.yaml
+oc delete -n ostoy-$GUID bucket ostoy-$GUID-bucket
 ----
-
-== Delete S3 bucket contents
-
-[source,sh,role=execute]
-----
-aws s3 rb s3://bucket-name --force
-----
-
-link:2-demo_app.adoc[Go back to the Demo Start]
