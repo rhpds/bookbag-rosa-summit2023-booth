@@ -2,55 +2,16 @@
 modules:
   home:
     name: Home
-    exit_sign: Continue
-  ops/lab_1_setup:
+    exit_sign: Go to Environment Info
+  info:
+    name: Environment Info
+    exit_sign: Go to Setup
+  1_setup:
     name: Setup
-    exit_sign: Continue
-  ops/lab_2_deploy_cluster:
-    name: Deploy ROSA cluster
-    exit_sign: Continue
-  ops/lab_3_create_admin_user:
-    name: Create admin user
-    exit_sign: Continue
-  ops/lab_4_managing_worker_nodes:
-    name: Managing Worker Nodes
-    exit_sign: Continue
-  ops/lab_5_labeling_nodes:
-    name: Labeling Nodes
-    exit_sign: Continue
-  ops/lab_6_autoscaling:
-    name: Cluster Autoscaling
-    exit_sign: Continue
-  ops/lab_7_cloudwatch:
-    name: Log Forwarding to Cloudwatch
-    exit_sign: Continue
-  ostoy/0_introduction:
-    name: Introduction
-    exit_sign: Continue
-  ostoy/1_overview:
-    name: Overview
-    exit_sign: Continue
-  ostoy/2_deployment:
-    name: Deployment
-    exit_sign: Continue
-  ostoy/3_healthcheck:
-    name: Health Checks
-    exit_sign: Continue
-  ostoy/4_storage:
-    name: Storage
-    exit_sign: Continue
-  ostoy/5_confsecenv:
-    name: Configuration
-    exit_sign: Continue
-  ostoy/6_networking:
-    name: Networking
-    exit_sign: Continue
-  ostoy/7_scaling:
-    name: Scaling
-    exit_sign: Continue
-  ostoy/8_logging:
-    name: Logging
-    exit_sign: Continue
-  ostoy/9_ack:
+    exit_sign: Go to Demo
+  2_demo_app:
+    name: Demo
+    exit_sign: Go to Clean-up
+  3_clean_up:
     name: ACK
-    exit_sign: Exit
+    exit_sign: Back Up to Start Again
