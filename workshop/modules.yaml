@@ -6,11 +6,11 @@ modules:
   info:
     name: Environment Info
     exit_sign: Continue
-  1-setup:
+  1_setup:
     name: Setup
     exit_sign: Continue
-  2-demo_app:
+  2_demo_app:
     name: Demo
     exit_sign: Continue
-  3-clean_up:
+  3_clean_up:
     name: Clean Up to Run Demo Again
