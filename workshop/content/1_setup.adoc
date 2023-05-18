@@ -222,7 +222,7 @@ AWS_ROLE_ARN:                 arn:aws:iam::948540395585:role/ack-s3-controller
 AWS_WEB_IDENTITY_TOKEN_FILE:  /var/run/secrets/eks.amazonaws.com/serviceaccount/token
 ----
 
-== Run these to setup the demo.  
+== Run these to setup the demo.
 
 . Create the OSToy project.
 +
