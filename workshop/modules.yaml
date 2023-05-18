@@ -6,12 +6,11 @@ modules:
   info:
     name: Environment Info
     exit_sign: Go to Setup
-  1_setup:
+  1-setup:
     name: Setup
     exit_sign: Go to Demo
-  2_demo_app:
+  2-demo_app:
     name: Demo
     exit_sign: Go to Clean-up
-  3_clean_up:
-    name: ACK
-    exit_sign: Back Up to Start Again
+  3-clean_up:
+    name: Clean Up to Run Demo Again
