@@ -15,7 +15,7 @@ Information about this environment is listed on this page.
 +
 [source,sh,role=execute]
 ----
-cat ${HOME}/login-command.txt | sed -n '5p' | sed -e 's/^[[:space:]]*//'
+cat ${HOME}/login-command.cmd | sed -n '5p' | sed -e 's/^[[:space:]]*//'
 ----
 
 . OpenShift Web console URL
