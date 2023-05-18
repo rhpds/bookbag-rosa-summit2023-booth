@@ -4,6 +4,6 @@ modules:
   activate:
   - home
   - info
-  - 1_setup
-  - 2_demo_app
-  - 3_clean_up
+  - 1-setup
+  - 2-demo_app
+  - 3-clean_up

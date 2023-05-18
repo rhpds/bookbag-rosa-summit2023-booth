@@ -2,15 +2,15 @@
 modules:
   home:
     name: Home
-    exit_sign: Go to Environment Info
+    exit_sign: Continue
   info:
     name: Environment Info
-    exit_sign: Go to Setup
+    exit_sign: Continue
   1-setup:
     name: Setup
-    exit_sign: Go to Demo
+    exit_sign: Continue
   2-demo_app:
     name: Demo
-    exit_sign: Go to Clean-up
+    exit_sign: Continue
   3-clean_up:
     name: Clean Up to Run Demo Again
