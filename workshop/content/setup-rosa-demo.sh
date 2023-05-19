@@ -4,6 +4,8 @@ set -e
 # Assuming ROSA CLI, OC CLI, AWS CLI, are already installed. Also that OC is already logged in with the cluster-admin
 # This script sets up the project to enable the ostoy app to connect with s3.
 
+oc new-project ostoy-$GUID
+
 wget -q -P ${HOME} https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-microservice-deployment.yaml
 curl -s https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-frontend-deployment.yaml | sed 's/\# serviceAccount/serviceAccount/' > ${HOME}/ostoy-frontend-deployment.yaml
 
@@ -29,8 +31,6 @@ elif [ -z "$POLICY_ARN" ]; then
 else
     echo "Varaibles are set...ok."
 fi
-
-oc new-project ostoy-$GUID
 
 cat <<EOF > $HOME/ostoy-sa-trust.json
 {
