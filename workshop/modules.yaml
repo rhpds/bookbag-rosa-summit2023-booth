@@ -3,17 +3,6 @@ modules:
   1-setup:
     name: First time setup
     exit_sign: Continue
-<<<<<<< HEAD
-  2-demoapp:
-    name: Deploy the app
-    exit_sign: Continue
-  3-cleanup:
-    name: Reset the demo
-    exit_sign: Continue
-  info:
-    name: Information
-    exit_sign: Exit
-=======
   info:
     name: Environment Info
     exit_sign: Continue
@@ -25,4 +14,3 @@ modules:
     exit_sign: Continue
   3_clean_up:
     name: Clean Up to Run Demo Again
->>>>>>> 0kashi-main
