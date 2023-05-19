@@ -85,7 +85,7 @@ aws logs describe-log-groups --log-group-name-prefix rosa-${GUID}
 [source,sh,role=execute]
 ----
 mkdir ~/bin
-export PATH=~/bin;$PATH
+export PATH=~/bin:$PATH
 echo 'PATH=$HOME/bin:$PATH' >> ~/.bashrc
 cd ~/bin
 rosa download oc
