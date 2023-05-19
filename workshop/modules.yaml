@@ -8,7 +8,4 @@ modules:
     exit_sign: Continue
   3-cleanup:
     name: Reset the demo
-    exit_sign: Continue
-  info:
-    name: Information
     exit_sign: Exit

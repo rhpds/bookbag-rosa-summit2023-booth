@@ -5,4 +5,3 @@ modules:
   - 1-setup
   - 2-demoapp
   - 3-cleanup
-  - info
