@@ -16,39 +16,6 @@ ssh %rosa_bastion_user_name%@bastion.%rosa_subdomain_base%
 
 The password for the user %rosa_bastion_user_name% is `%rosa_user_password%`
 
-<<<<<<< HEAD
-=======
-== Setup `oc` command line tool
-[source,sh,role=execute]
-----
-mkdir ~/bin
-export PATH=~/bin:$PATH
-echo 'PATH=$HOME/bin:$PATH' >> ~/.bashrc
-cd ~/bin
-rosa download oc
-tar xvzf openshift-client-linux.tar.gz
-chmod 755 oc kubectl
-export API=$(rosa list clusters -o json | jq -r '.[].api.url')
-echo "export API=$API" >> ~/.bashrc
-oc login -u cluster-admin -p %rosa_admin_password% $API
-export CONSOLE=$(oc whoami --show-console)
-echo "export CONSOLE=$CONSOLE" >> ~/.bashrc
-----
-
-////
-== Create the admin user in the ROSA Cluster
-
-. Run this command to create the admin user. The output is saved locally in case you get logged out.
-+
-[source,sh,role=execute]
-----
-rosa create admin --cluster rosa-${GUID} | tee ${HOME}/login-command.cmd
-----
-////
-
-. Wait about 2 minutes for it to set up. Copy the command and paste it in and run it to log in.
-
->>>>>>> e6be50c (move oc setup to top)
 == Ensure ELB service role exists
 
 Run the following to check for the role and create it if it is missing.
@@ -204,16 +171,12 @@ aws logs describe-log-groups --log-group-name-prefix rosa-${GUID}
 +
 [source,sh,role=execute]
 ----
-<<<<<<< HEAD
 oc whoami --show-console
-=======
-echo $CONSOLE
->>>>>>> e6be50c (move oc setup to top)
 ----
 
 . Click on `htpasswd`
 . User: `cluster-admin`
-. PW: %rosa_admin_password%
+. PW: from admin user command above
 
 == Install the ACK Operator
 
@@ -259,7 +222,7 @@ AWS_ROLE_ARN:                 arn:aws:iam::948540395585:role/ack-s3-controller
 AWS_WEB_IDENTITY_TOKEN_FILE:  /var/run/secrets/eks.amazonaws.com/serviceaccount/token
 ----
 
-== Run these to setup the demo.
+== Run these to setup the demo.  
 
 . Create the OSToy project.
 +
