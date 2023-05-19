@@ -1,0 +1,103 @@
+= Demo app on ROSA
+
+. Explain that the ACK Operator is already installed and set up.
+
+. Ensure you are in the ostoy-XXXXX project.
++
+[source,sh,role=execute]
+----
+oc project ostoy-${GUID}
+----
+
+. Create an S3 bucket by using the ACK.
++
+[source,sh,role=execute]
+----
+cat << EOF | oc apply -f -
+apiVersion: s3.services.k8s.aws/v1alpha1
+kind: Bucket
+metadata:
+  name: ostoy-${GUID}-bucket
+  namespace: ostoy-${GUID}
+spec:
+  name: ostoy-${GUID}-bucket
+EOF
+----
++
+[WARNING]
+====
+Do not change the name of the bucket in the above manifest.  The OSToy application is looking for a bucket with a specific name.  If you change it, it will not work.
+====
+
+. Confirm the bucket was created:
++
+[source,sh,role=execute]
+----
+aws s3 ls | grep ostoy-${GUID}-bucket
+----
++
+.Sample Output
+[source,text,options=nowrap]
+----
+2023-04-26 18:24:16 ostoy-6xjt6-bucket
+----
+
+. Deploy the microservice
++
+[source,sh,role=execute]
+----
+oc apply -f ${HOME}/ostoy-microservice-deployment.yaml
+----
+
+. Deploy the frontend
++
+[source,sh,role=execute]
+----
+oc apply -f ${HOME}/ostoy-frontend-deployment.yaml
+----
+
+. Verify that the `AWS_WEB_IDENTITY_TOKEN_FILE` and `AWS_ROLE_ARN` environment variables exist for our application which means that our application can successfully authenticate to use the S3 service:
++
+[source,sh,role=execute]
+----
+oc describe pod ostoy-frontend -n ostoy-${GUID} | grep "^\s*AWS_"
+----
++
+.Sample Output
+[source,text,options=nowrap]
+----
+AWS_ROLE_ARN:                 arn:aws:iam::948540395585:role/ostoy-sa-role
+AWS_WEB_IDENTITY_TOKEN_FILE:  /var/run/secrets/eks.amazonaws.com/serviceaccount/token
+----
+
+== See the bucket contents through OSToy
+
+. Get the route so that we can access the application.
++
+[source,sh,role=execute]
+----
+oc get route ostoy-route -o jsonpath='{.spec.host}{"\n"}' -n ostoy-${GUID}
+----
+
+. Click on "ACK S3" in the left menu
+
+== Create files in your S3 bucket
+
+For this step we will use OSToy to create a file and upload it to the S3 bucket.
+While S3 can accept any kind of file, for this workshop we'll use text files so that the contents can easily be rendered in the browser.
+
+. Click on "ACK S3" in the left menu in OSToy.
+. Scroll down to the section underneath the "Existing files" section, titled "Upload a text file to S3".
+. Enter a file name for your file.
+. Enter some content for your file.
+. Click "Create file".
+. Scroll up to the top section for existing files and you should see your file that you just created there.
+. Click on the file name to view the file.
+. Let's confirm directly via the AWS CLI. Run the following to list the contents of our bucket.
++
+[source,sh,role=execute]
+----
+aws s3 ls s3://ostoy-${GUID}-bucket
+----
+
+

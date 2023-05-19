@@ -2,7 +2,14 @@
 name: Summit 2023 ROSA BOOTH
 modules:
   activate:
+<<<<<<< HEAD
   - 1-setup
   - 2-demoapp
   - 3-cleanup
   - info
+=======
+    - home
+    - 1_setup
+    - 2_demo_app
+    - 3_clean_up
+>>>>>>> 0kashi-main

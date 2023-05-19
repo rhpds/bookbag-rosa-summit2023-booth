@@ -1,0 +1,12 @@
+= Clean up
+
+Run these steps after showing this demo. So that it is ready for the next visitor. Then 
+
+== Delete the application
+
+[source,sh,role=execute]
+----
+oc delete -n ostoy-$GUID -f ${HOME}/ostoy-microservice-deployment.yaml
+oc delete -n ostoy-$GUID -f ${HOME}/ostoy-frontend-deployment.yaml
+oc delete -n ostoy-$GUID bucket ostoy-$GUID-bucket
+----
