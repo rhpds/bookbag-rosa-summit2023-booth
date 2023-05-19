@@ -11,7 +11,7 @@ Information about this environment is listed on this page.
 
 == Cluster information
 
-. Login command:
+. Cluster login command:
 +
 [source,sh,role=execute]
 ----

@@ -1,8 +1,9 @@
 #!/bin/bash
 set -e
-# Assuming ROSA CLI, OC CLI, AWS CLI, are already installed. Also that OC is already logged in with the cluster-admin
 
+# Assuming ROSA CLI, OC CLI, AWS CLI, are already installed. Also that OC is already logged in with the cluster-admin
 # This script sets up the project to enable the ostoy app to connect with s3.
+
 
 wget -q -P ${HOME} https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-microservice-deployment.yaml
 curl -s https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/yaml/ostoy-frontend-deployment.yaml | sed 's/\# serviceAccount/serviceAccount/' > ${HOME}/ostoy-frontend-deployment.yaml

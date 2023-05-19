@@ -16,7 +16,106 @@ ssh %rosa_bastion_user_name%@bastion.%rosa_subdomain_base%
 
 The password for the user %rosa_bastion_user_name% is `%rosa_user_password%`
 
-== Create the admin user in the ROSA Cluster
+== Ensure ELB service role exists
+
+Run the following to check for the role and create it if it is missing.
+
+[source,sh,role=execute]
+----
+aws iam get-role --role-name "AWSServiceRoleForElasticLoadBalancing" || aws iam create-service-linked-role --aws-service-name "elasticloadbalancing.amazonaws.com"
+----
+
+== Install a ROSA w/HCP cluster
+
+=== VPC
+
+. Create the VPC.
++
+[source,sh]
+----
+curl -s https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/rosa/resources/setup-vpc.sh | bash
+----
+
+. There are two commands that are output from the script. Set those as environment variables to make running the create cluster command easier. Copy them from the output and run them.
++
+[source,sh]
+----
+export PUBLIC_SUBNET_ID=<public subnet id here>
+export PRIVATE_SUBNET_ID=<private subnet id here>
+----
+
+. Confirm that the environment variables are, in fact, set.
++
+[source,sh,role=execute]
+----
+echo "Public Subnet: $PUBLIC_SUBNET_ID"; echo "Private Subnet: $PRIVATE_SUBNET_ID"
+----
++
+.Sample Output
+[source,text]
+----
+Public Subnet: subnet-0faeeeb0000000000
+Private Subnet: subnet-011fe340000000000
+----
++
+[WARNING]
+====
+If one or both are blank, do not proceed and ask for assistance.
+====
+
+=== OIDC Configuration
+
+[source,sh]
+----
+export OIDC_ID=$(rosa create oidc-config --mode auto --managed --yes -o json | jq -r '.id'); echo $OIDC_ID;
+----
+
+.Sample Output
+[source,text]
+----
+23o3doeo86adgqhci4jl000000000000
+----
+
+=== Create the cluster
+
+. Run the following command to create the account-wide roles:
++
+[source,sh]
+----
+rosa create account-roles --mode auto --yes
+----
+
+. Run the following command to create the cluster:
++
+[source,sh]
+----
+rosa create cluster --cluster-name rosa-${GUID} \
+    --subnet-ids ${PUBLIC_SUBNET_ID},${PRIVATE_SUBNET_ID} \
+    --hosted-cp \
+    --oidc-config-id $OIDC_ID \
+    --sts --mode auto --yes
+----
++
+In about 10 minutes the control plane and API will be up, and about 5-10 minutes after, the worker nodes will be up and the cluster will be completely usable.  This cluster will have a control plane across three AWS availability zones in your selected region, in a Red Hat AWS account and will also create 2 worker nodes in your AWS account.
+
+=== Check installation status
+. You can run the following command to check the detailed status of the cluster:
++
+[source,sh,role=execute]
+----
+rosa describe cluster --cluster rosa-${GUID}
+----
++
+or, you can also watch the logs as it progresses:
++
+[source,sh,role=execute]
+----
+rosa logs install --cluster rosa-${GUID} --watch
+----
+
+. Once the state changes to “ready” your cluster is now installed. It may take a few more minutes for the worker nodes to come online. In total this should take about 15 minutes.
+
+=== Create the admin user in the ROSA Cluster
 
 . Run this command to create the admin user. The output is saved locally in case you get logged out.
 +
@@ -27,20 +126,11 @@ rosa create admin --cluster rosa-${GUID} | tee ${HOME}/login-command.cmd
 
 . Wait about 2 minutes for it to set up. Copy the command and paste it in and run it to log in.
 
-== Ensure ELB service role exists
-
-Run the following to check for the role and create it if it is missing.
-
-[source,sh,role=execute]
-----
-aws iam get-role --role-name "AWSServiceRoleForElasticLoadBalancing" || aws iam create-service-linked-role --aws-service-name "elasticloadbalancing.amazonaws.com"
-----
-
 == Configure Cloudwatch
 
 . Run the following to configure the cluster to forward logs to cloudwatch.
 +
-[source,sh,role=execute]
+[source,sh]
 ----
 curl -s https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/resources/configure-cloudwatch.sh | bash
 ----
@@ -74,7 +164,6 @@ aws logs describe-log-groups --log-group-name-prefix rosa-${GUID}
     ]
 }
 ----
-
 
 == Log into OpenShift Web Console
 
@@ -114,7 +203,7 @@ So please proceed.
 
 . Run this script to finish setup.
 +
-[source,sh,role=execute]
+[source,sh]
 ----
 curl -s https://raw.githubusercontent.com/openshift-cs/rosaworkshop/master/rosa-workshop/ostoy/resources/setup-s3-ack-controller.sh | bash
 ----
@@ -144,7 +233,7 @@ oc new-project ostoy-${GUID}
 
 . Run the following to set up this demo.
 +
-[source,sh,role=execute]
+[source,sh]
 ----
 wget -q https://raw.githubusercontent.com/0kashi/bookbag-rosa-summit2023-booth/main/workshop/content/setup-rosa-demo.sh
 chmod +x setup-rosa-demo.sh
