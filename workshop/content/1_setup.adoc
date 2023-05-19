@@ -16,7 +16,6 @@ ssh %rosa_bastion_user_name%@bastion.%rosa_subdomain_base%
 
 The password for the user %rosa_bastion_user_name% is `%rosa_user_password%`
 
-<<<<<<< HEAD
 == Ensure ELB service role exists
 
 Run the following to check for the role and create it if it is missing.
