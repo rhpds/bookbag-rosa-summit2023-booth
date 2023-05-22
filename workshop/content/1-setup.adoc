@@ -228,7 +228,7 @@ AWS_WEB_IDENTITY_TOKEN_FILE:  /var/run/secrets/eks.amazonaws.com/serviceaccount/
 +
 [source,sh]
 ----
-wget -q https://raw.githubusercontent.com/0kashi/bookbag-rosa-summit2023-booth/main/workshop/content/setup-rosa-demo.sh
+wget -q https://raw.githubusercontent.com/rhpds/bookbag-rosa-summit2023-booth/main/workshop/content/setup-rosa-demo.sh
 chmod +x setup-rosa-demo.sh
 ./setup-rosa-demo.sh
 ----
